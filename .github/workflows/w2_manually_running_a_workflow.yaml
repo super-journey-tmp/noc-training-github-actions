@@ -1,3 +1,4 @@
+---
 name: W2 Manually Running a Workflow
 
 on: workflow_dispatch
@@ -7,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-      echo "🖐️ This workflow was executed manually by ${{ github.actor }}."
+        echo "🖐️ This workflow was executed manually by ${{ github.actor }}."
   
