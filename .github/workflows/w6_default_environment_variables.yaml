@@ -1,0 +1,18 @@
+---
+name: W6 Default Environment Variables
+
+run-name: 🖐️ This workflow was executed manually by ${{ github.actor }}
+
+on: workflow_dispatch
+
+jobs:
+  display-variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Default Env Vars
+        run: |
+          echo "The name of the person or app that initiated the workflow is $GITHUB_ACTOR"
+          echo "The 'job_id' of the current job is $GITHUB_JOB"
+          echo "The path on the runner to the file that sets system 'PATH' variables from workflow commands is $GITHUB_PATH"
+          echo "The operating system on the runner is $RUNNER_OS"
+  

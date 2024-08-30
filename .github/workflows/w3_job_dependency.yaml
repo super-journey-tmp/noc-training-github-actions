@@ -1,4 +1,5 @@
-name: Job Dependency
+---
+name: W3 Job Dependency
 
 run-name: 🖐️ This workflow was executed manually by ${{ github.actor }}
 

@@ -1,4 +1,5 @@
-name: Variables & Secrets for Single Workflow
+---
+name: W4 Variables for Single Workflow
 
 run-name: 🖐️ This workflow was executed manually by ${{ github.actor }}
 
@@ -40,4 +41,9 @@ jobs:
         # 🧠 Remember that each job runs on a different agent.
         env:
           STEP_GREETING: The_step_greets_the
+      - name: Step Environment Variables 2
+        run: |
+          echo "${{ vars.GREETING }} NOC"
+        # ❌ echo "$STEP_GREETING NOC"
+        # ⚠️ Steps cannot access the environment variables of defined in another steps. 
   
