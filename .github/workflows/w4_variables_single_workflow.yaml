@@ -1,0 +1,43 @@
+name: Variables & Secrets for Single Workflow
+
+run-name: 🖐️ This workflow was executed manually by ${{ github.actor }}
+
+on: workflow_dispatch
+
+env:
+  WORKFLOW_GREETING: The_workflow_greets_the
+
+jobs:
+  greeting_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Workflow Environment Variables
+        run: |
+          echo "$WORKFLOW_GREETING NOC"
+  greeting_job:
+    runs-on: ubuntu-latest
+    needs: greeting_workflow
+    env:
+      JOB_GREETING: The_job_greets_the
+    steps:
+      - name: Job Environment Variables
+        run: |
+          echo "$JOB_GREETING NOC"
+      - name: Workflow & Job Environment Variables
+        run: |
+          echo "$WORKFLOW_GREETING Telefonica Team"
+          echo "$JOB_GREETING Telefonica Team"
+  greeting_step:
+    runs-on: ubuntu-latest
+    needs: [greeting_workflow, greeting_job]
+    steps:
+      - name: Step Environment Variables
+        run: |
+          echo "$WORKFLOW_GREETING NOC"
+          echo "$STEP_GREETING NOC"
+        # ❌ echo "$JOB_GREETING Telefonica Team" 
+        # ⚠️ This job cannot access the environment variables of another job. 
+        # 🧠 Remember that each job runs on a different agent.
+        env:
+          STEP_GREETING: The_step_greets_the
+  

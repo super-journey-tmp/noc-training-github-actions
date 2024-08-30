@@ -1,0 +1,33 @@
+name: Job Dependency
+
+run-name: 🖐️ This workflow was executed manually by ${{ github.actor }}
+
+on: workflow_dispatch
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple Greeting
+        run: |
+          echo "Hi Juan Manuel"
+          echo "Hi Miriam"
+  greet-agustin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet Agustin
+        run: echo "Hi Agustin"
+  greet-jose-manuel:
+    runs-on: ubuntu-latest
+    needs: greet
+    steps:
+      - name: Greet José Manuel
+        run: echo "Hi teacher"
+  say-goodbye:
+    runs-on: ubuntu-latest
+    name: Say Goodbye
+    needs: [greet, greet-agustin]
+    steps:
+      - name: Simple farewell
+        run: echo "Goodbye NOC 2"
+  
